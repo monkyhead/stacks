@@ -1,0 +1,31 @@
+<ol>
+    {{#if journal}}
+    <li class="journal menu_item menu_link"><a href="#journals/{{ journal.id }}">{{ journal.title }}</a>
+        <ul>
+            {{#if lsgroup}}<li class="menu_link">BIB ID: <a href="dms://search_bib/{{ journal.ils_bib_id }}">{{ journal.ils_bib_id }}</a></li>{{/if}}
+            {{#if journal.url}}<li class="menu_link"><a href="{{ journal.url }}" target="_blank">Journal Website</a></li>{{/if}}
+            {{#if multiple_publishers}}
+            <li>Publishers:
+                <ul>
+                {{#each journal.publishers}}<li class="menu_link"><a href="#publisher/{{ this.id }}">{{ this.title }}</a></li>{{/each}}
+                </ul>
+            </li>
+            {{else}}
+            {{#each journal.publishers}}
+            <li class="menu_link">Publisher: <a href="#publisher/{{ this.id }}">{{ this.title }}</a></li>
+            {{/each}}
+            {{/if}}
+        </ul>
+    </li>
+    {{/if}}
+    {{#if volume}}
+    <li class="volume menu_item menu_link"><a href="#volume/{{ volume.id }}">{{ volume.title }}</a></li>
+    {{/if}}
+    {{#if issue}}
+    <li class="menu_item menu_link"><a href="#issue/{{ issue.id }}">{{ issue.title }}</a></li>
+    {{/if}}
+    {{#if article}}
+    <li class="menu_item" id="menu_article"><a>{{{ article.title }}}</a></li>
+    <li class="menu_item" id="article_menu_item"><a href="#" class="article_menu">Other Articles in this {{#unless issue}}Volume{{else}}Issue{{/unless}}</a></li>
+    {{/if}}
+</ol>

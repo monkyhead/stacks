@@ -1,0 +1,9 @@
+<h1><a href="#journals/{{ journal.id }}">{{ journal.full_title }}</a></h1>
+{{#if journal.holdings}}<p class="date_range">{{ journal.holdings }}</p>{{/if}}
+
+<p class="count">This journal has {{ journal.volumes.length }} volumes:</p>
+<ul class="volumes">
+    {{#each journal.volumes}}
+    <li><a href="#volume/{{ this.id }}">{{ this.title }}</a>{{#if this.cover_date}}<span class="cover_date"> - {{this.cover_date}}</span>{{/if}}</li>
+    {{/each}}
+</ul>

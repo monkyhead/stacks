@@ -1,0 +1,13 @@
+{{#if publisher}}
+<h1>{{ publisher }}</h1>
+{{else}}
+<h1>eJournal Stacks | Library of Congress</h1>
+{{/if}}
+<div class="pagination"></div>
+<p class="count">Please select individual journal to see exact holdings.</p>
+<ul class="journals">
+    {{#each journals}}
+    <li><a href="#journals/{{attributes.id}}" data-journal-id="{{attributes.id}}" class="journal_link">{{attributes.full_title}}</a></li>
+    {{/each}}
+</ul>
+<div class="pagination"></div>

@@ -1,0 +1,9 @@
+<h1>eJournal Stacks | Library of Congress</h1>
+<div class="pagination"></div>
+<h2 class="count">Publishers</h2>
+<ul class="publishers">
+    {{#each publishers}}
+    <li><a href="#publisher/{{attributes.id}}" data-publisher-id="{{attributes.id}}" class="publisher_link">{{attributes.title}}</a></li>
+    {{/each}}
+</ul>
+<div class="pagination"></div>

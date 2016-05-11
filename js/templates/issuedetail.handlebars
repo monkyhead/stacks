@@ -1,0 +1,15 @@
+<h1><a href="#journals/{{ issue.journal.id }}">{{ issue.journal.full_title }}</a></h1>
+<p class="count">This issue has {{ issue.articles.length }} articles</p>
+<ul class="articles" id="articles">
+    {{#each issue.articles}}
+    <li data-id="{{ this.id }}" data-index="{{@index}}"><a href="#article/{{ this.id }}" class="article_link" data-id="{{ this.id }}" data-index="{{@index}}">{{{ this.title }}}</a></li>
+    {{/each}}
+</ul>
+{{#if orphans}}
+<p class="count">{{ orphans.length }} files</p>
+<ul class="" id="orphans">
+    {{#each orphans}}
+    <li data-id="{{ this.id }}" data-index="{{@index}}"><a href="#file/{{ this.id }}" class="orphan_link" data-id="{{ this.id }}" data-index="{{@index}}">{{ this.file_name }}</a></li>
+    {{/each}}
+</ul>
+{{/if}}

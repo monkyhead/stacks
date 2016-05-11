@@ -1,0 +1,6 @@
+<div id="document_box">
+    {{#if article.attributes.title}}<h1>{{{ article.attributes.title }}}</h1>{{/if}}
+    <p class="pager">{{#if article.prev }}<a href="#{{ article.name }}/{{ article.prev }}" class="next_prev" data-index="{{ article.prevIndex }}" data-id="{{ article.prev }}">« Previous</a>{{#if article.next }} | {{/if}}{{/if}}{{#if article.next }}<a href="#{{ article.name }}/{{ article.next }}" class="next_prev" data-index="{{ article.nextIndex }}" data-id="{{ article.next }}">Next »</a>{{/if}}</p>
+    <div><img src="{{ article.file_url }}" alt=""></div>
+    <p class="pager">{{#if article.prev }}<a href="#{{ article.name }}/{{ article.prev }}" class="next_prev" data-index="{{ article.prevIndex }}" data-id="{{ article.prev }}">« Previous</a>{{#if article.next }} | {{/if}}{{/if}}{{#if article.next }}<a href="#{{ article.name }}/{{ article.next }}" class="next_prev" data-index="{{ article.nextIndex }}" data-id="{{ article.next }}">Next »</a>{{/if}}</p>
+</div>

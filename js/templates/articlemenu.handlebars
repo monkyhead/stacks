@@ -1,0 +1,14 @@
+<!--[if lte IE 8]>
+<iframe id="menu_shim" src="about:blank" style="background-color: #E6F6FD" frameborder="0"></iframe>
+<![endif]-->
+<div id="nav_article_list">
+    <h3>{{#if issue}}{{ issue.title }}{{else}}{{ volume.title }}{{/if}}</h3>
+    <ul>
+        {{#each issue.articles}}
+        <li data-id="{{ this.id }}" data-index="{{@index}}"><a href="#article/{{ this.id }}" class="article_link" data-id="{{ this.id }}" data-index="{{@index}}">{{{ this.title }}}</a></li>
+        {{/each}}
+        {{#each volume.orphan_articles}}
+        <li data-id="{{ this.id }}" data-index="{{@index}}"><a href="#article/{{ this.id }}" class="article_link" data-id="{{ this.id }}" data-index="{{@index}}">{{{ this.title }}}</a></li>
+        {{/each}}
+    </ul>
+</div>

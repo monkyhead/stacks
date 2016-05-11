@@ -1,0 +1,26 @@
+<h1><a href="#journals/{{ volume.journal.id }}">{{ volume.journal.full_title }}</a></h1>
+
+<p class="count">This volume has {{ volume.issues.length }} issues</p>
+<ul>
+    {{#each volume.issues}}
+    <li><a href="#issue/{{ this.id }}">{{ this.title }}</a>{{#if this.cover_date}}<span class="cover_date"> - {{this.cover_date}}</span>{{/if}}</li>
+    {{/each}}
+</ul>
+
+{{#if volume.orphan_articles}}
+<p class="count">{{ volume.orphan_articles.length }} articles</p>
+<ul class="articles" id="articles">
+    {{#each volume.orphan_articles}}
+    <li data-id="{{ this.id }}" data-index="{{@index}}"><a href="#article/{{ this.id }}" class="article_link" data-id="{{ this.id }}" data-index="{{@index}}">{{{ this.title }}}</a></li>
+    {{/each}}
+</ul>
+{{/if}}
+
+{{#if orphans}}
+<p class="count">{{ orphans.length }} files</p>
+<ul>
+    {{#each orphans}}
+    <li data-id="{{ this.id }}" data-index="{{@index}}"><a href="#file/{{ this.id }}" class="orphan_link" data-id="{{ this.id }}" data-index="{{@index}}">{{ this.file_name }}</a></li>
+    {{/each}}
+</ul>
+{{/if}}

@@ -1,0 +1,352 @@
+@import 'colors';
+@import 'fonts';
+@import 'layout';
+
+@import 'compass/reset';
+@import 'compass/css3';
+@import 'compass/typography/vertical_rhythm';
+@import 'compass/utilities/general/min';
+
+$base-font-size: 16px;
+$base-line-height: 24px;
+$round-to-nearest-half-line: true;
+@include establish-baseline;
+
+html {
+    height: 101%;
+}
+
+body {
+    background-color: $page-bg;
+    color: $body-text-color;
+    font-family: $body-text;
+    height: 100%;
+}
+
+a {
+    &:link, &:visited {
+        color: $link-color;
+        text-decoration: none;
+    }
+    &:hover {
+        color: $link-hover;
+        text-decoration: underline;
+    }
+}
+
+#content {
+    background-color: $body-color;
+    margin: 0 auto;
+    max-width: 1240px;
+    min-height: 100%;
+    position: relative;
+}
+
+.busybody {
+    cursor: progress !important;
+    * {
+        cursor: progress !important;
+    }
+    
+    #ajax_load {
+        display: block !important;
+    }
+}
+
+.pagination {
+    float: right;
+    @include adjust-font-size-to(14px);
+    
+    li {
+        @include inline-block;
+        border: 1px solid $page-bg;
+        border-left: none;
+
+        &:first-child {
+            border-color: transparent $page-bg transparent transparent;
+            padding-right: 4px;
+        }
+    }
+    
+    a {
+        padding: 4px;
+    }
+}
+
+#left {
+    background-color: $body-color;
+    border-right: 1px solid $nav-border;
+    height: 100%;
+    overflow: visible;
+    position: absolute;
+    width: $left-width;
+    z-index: 5;
+    @include box-sizing(border-box);
+
+    header {
+        height: $base-font-size * 6;
+        @include leader(1);
+        @include trailer(1);
+
+        img {
+            background-color: $loc-blue;
+            
+            &:hover {
+                background-color: shade($loc-blue, 16);
+            }
+        }
+    }
+    
+    ol {
+        position: relative;
+    }
+
+    .menu_item {
+        border-bottom: 1px solid $nav-border;
+        margin-left: $gutter;
+        @include adjust-font-size-to(12px);
+        
+        > a {
+            display: block;
+            font-family: $title-text;
+            font-weight: bold;
+            margin-left: -$gutter;
+            padding-left: $gutter;
+            position: relative;
+
+            &:link, &:visited, &:hover {
+                color: $nav-link-color;
+                text-decoration: none;
+            }
+            
+            &:hover {
+                background-color: $page-bg;
+            }
+
+            &.active {
+                background-color: $light-blue;
+            
+                // Creates right arrow shape for pop up menu
+                &::before {
+                    background-color: $light-blue;
+                    width: $base-line-height/4;
+                    height: $base-line-height;
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    right: -$base-line-height/4;
+                }
+            
+                &::after {
+                    border-top: $base-line-height/2 solid transparent;
+                    border-bottom: $base-line-height/2 solid transparent;
+                    border-left: $base-line-height/2 solid $light-blue;
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    right: -$base-line-height * 0.75;
+                }
+            }
+        }
+    }
+
+    .journal {
+        border-top: 1px solid $nav-border;
+        
+        a {
+            border-bottom: none;
+        }
+
+        ul {
+            background-color: $body-color;
+            margin-left: -2em;
+        }
+
+        li {
+            font-family: $body-text;
+            padding-left: $gutter * 2;
+        }
+    }
+
+    #ajax_load {
+        background-color: $body-color;
+        display: none;
+        position: fixed;
+        bottom: 0;
+        padding-left: $gutter;
+        width: $left-width - 1px;
+        z-index: 6;
+        @include box-sizing(border-box);
+        @include padding-trailer(1);
+        @include adjust-font-size-to(12px);
+        
+        p {
+            background: image-url('ajax_load.gif') no-repeat left center;
+            border-top: 1px solid $loading-border-color;
+            color: $loading-text-color;
+            font-family: $title-text;
+            font-weight: bold;
+            padding-left: image-width('ajax_load.gif') + 12px;
+        }
+    }
+}
+
+#menu_shim {
+    // IE only. Forces z-index over plugins (pdf). Sits under #nav_article_list; position and overall dimensions should match.
+    display: none;
+    margin-left: $left-width;
+    position: absolute;
+    top: 4em;
+    left: 0;
+    width: 652px;
+    height: 418px;
+    z-index: 3;
+}
+
+#nav_article_list {
+    display: none;
+    background-color: $page-bg;
+    box-shadow: 0 0 12px rgba(black, 0.4);
+    margin-left: $left-width;
+    position: absolute;
+    padding: .6em 0 .6em $gutter;
+    top: 4em;
+    left: 0;
+    width: 620px;
+    height: 400px;
+    z-index: 4;
+
+    h3 {
+        font-family: $title-text;
+        font-weight: bold;
+        @include adjust-font-size-to(15px);
+    }
+    
+    ul {
+        height: 90%;
+        margin: 1px;
+        overflow-y: auto;
+        @include adjust-font-size-to(12px);
+    }
+    
+    li {
+        line-height: 1.5;
+        margin-bottom: 1em;
+    }
+}
+
+#document_box {
+    object {
+        border: 1px solid $loc-blue;
+        @include min-height(800px);
+    }
+
+    .pager {
+        @include adjust-font-size-to(14px);
+        margin-left: 1em;
+        text-align: right;
+    }
+}
+
+#main {
+    padding: 0;
+    margin-left: $left-width;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    @include adjust-font-size-to(15px);
+
+    header, footer, #stacks {
+        padding: 0 $gutter;
+    }
+
+    h1 {
+        font-family: $title-text;
+        @include adjust-font-size-to(25px);
+        @include leader(0.5);
+    }
+    
+    h2 {
+        font-family: $title-text;
+    }
+    
+    .date_range {
+        font-family: $title-text;
+        @include adjust-font-size-to(15px);
+    }
+    
+    header {
+        overflow: auto;
+
+        li {
+            border-right: 1px solid $nav-border;
+            padding: 0 $gutter;
+            float: left;
+            @include adjust-font-size-to(13px);
+    
+            &:first-child {
+                padding-left: 0;
+            }
+        }
+    }
+    
+    footer {
+        display: none;
+        border-top: 2px solid $loc-blue;
+        @include adjust-font-size-to(15px);
+        @include padding-leader(.8);
+        @include padding-trailer(1.4);
+    }
+    
+    #stacks {
+        clear: left;
+        @include trailer(2);
+    }
+
+    .count {
+        font-weight: bold;
+        @include adjust-font-size-to(15px);
+        @include leader(0.8214);
+    }
+
+    .publishers li, .journals li, .articles li {
+        border-bottom: 1px dotted $loc-blue;
+        margin-bottom: -1px;
+        @include padding-leader(.2);
+        @include padding-trailer(.2);
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    .volumes > li {
+        list-style-type: disc;
+    }
+
+    .cover_date {
+        color: $pub_date_text_color;
+        @include adjust-font-size-to(13px);
+    }
+    
+    .sublist > li {
+        list-style-type: circle;
+        margin-left: $gutter;
+    }
+
+    .file_links {
+        display: inline-block;
+        margin-left: .4em;
+        text-transform: uppercase;
+        @include adjust-font-size-to(14px);
+        @include adjust-leading-to(0.6);
+        
+        a {
+            border-left: 1px solid $body-text-color;
+            padding-left: 0.6em;
+            padding-right: 0.6em;
+        }
+    }
+}
